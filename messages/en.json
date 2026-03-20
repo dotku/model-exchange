@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "title": "Model Exchange - AI Model Marketplace",
+    "description": "Discover and integrate cutting-edge AI models. A marketplace for LLM providers to list, price, and distribute their models."
+  },
+  "nav": {
+    "brand": "Model Exchange",
+    "models": "Models",
+    "pricing": "Pricing",
+    "docs": "Docs",
+    "listModel": "List Your Model"
+  },
+  "hero": {
+    "badge": "Marketplace for AI Models",
+    "title": "Discover, Compare & Integrate",
+    "titleHighlight": "AI Models",
+    "subtitle": "The premier marketplace where AI model providers list their LLMs with transparent pricing. Find the perfect model for your use case.",
+    "browseModels": "Browse Models",
+    "listYourModel": "List Your Model"
+  },
+  "models": {
+    "sectionTitle": "Featured Models",
+    "sectionSubtitle": "Explore top-rated large language models from leading providers",
+    "perMillionTokens": "per 1M tokens",
+    "input": "Input",
+    "output": "Output",
+    "context": "Context",
+    "tokens": "tokens",
+    "viewDetails": "View Details",
+    "contactProvider": "Contact Provider"
+  },
+  "comingSoon": {
+    "title": "Media Models",
+    "badge": "Coming Soon",
+    "subtitle": "We're expanding beyond LLMs. Image generation, video synthesis, audio processing, and multimodal models are on the way.",
+    "imageGen": "Image Generation",
+    "imageGenDesc": "State-of-the-art text-to-image and image-to-image models",
+    "videoSynth": "Video Synthesis",
+    "videoSynthDesc": "AI-powered video generation and editing models",
+    "audioProc": "Audio Processing",
+    "audioProcDesc": "Speech-to-text, text-to-speech, and audio generation",
+    "notify": "Get Notified",
+    "emailPlaceholder": "Enter your email"
+  },
+  "footer": {
+    "tagline": "The marketplace for AI model providers and consumers.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "allRightsReserved": "All rights reserved."
+  },
+  "language": {
+    "en": "English",
+    "zh": "中文"
+  },
+  "terms": {
+    "metaTitle": "Terms of Service - Model Exchange",
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: March 20, 2026",
+    "s1Title": "1. Acceptance of Terms",
+    "s1Content": "By accessing or using the Model Exchange platform (\"Platform\"), you agree to be bound by these Terms of Service (\"Terms\"). The Platform is operated by Model Exchange, Inc. (\"we\", \"us\", or \"our\"). If you do not agree to all of these Terms, you may not access or use the Platform. These Terms apply to all visitors, users, model providers, and any other parties who access or use the Platform.",
+    "s2Title": "2. Description of Service",
+    "s2Content": "Model Exchange is a marketplace that connects AI model providers with consumers. Providers can list their large language models (LLMs) with descriptions, pricing, and technical specifications. Consumers can discover, compare, and integrate these models into their applications. We act as an intermediary platform and do not ourselves provide AI model inference services. All model services are provided directly by the respective model providers listed on the Platform.",
+    "s3Title": "3. Account Registration",
+    "s3Content": "To access certain features of the Platform, you must register for an account. You agree to provide accurate, current, and complete information during registration and to update such information to keep it accurate. You are responsible for safeguarding your account credentials and for all activities that occur under your account. You must notify us immediately of any unauthorized use of your account. We reserve the right to suspend or terminate accounts that violate these Terms or that we reasonably believe pose a security risk.",
+    "s4Title": "4. Model Provider Obligations",
+    "s4Content": "If you list a model on the Platform as a provider, you represent and warrant that: (a) you have the legal right to offer the model and its outputs; (b) your model descriptions, benchmarks, and pricing are accurate and not misleading; (c) you will maintain the availability and quality of service as advertised; (d) your model complies with all applicable laws and regulations, including export controls and data protection laws; (e) you will promptly update your listing if any material changes occur to your model's capabilities, pricing, or availability.",
+    "s5Title": "5. Consumer Obligations",
+    "s5Content": "As a consumer of models listed on the Platform, you agree to: (a) use models only in compliance with the provider's acceptable use policies and all applicable laws; (b) not attempt to reverse-engineer, extract weights from, or otherwise misappropriate any listed model; (c) be responsible for any content you generate using the models; (d) not use models to generate content that is illegal, harmful, deceptive, or infringes on the rights of others; (e) comply with any rate limits, usage quotas, or other technical restrictions imposed by model providers.",
+    "s6Title": "6. Pricing and Payments",
+    "s6Content": "Model pricing is set by individual providers and displayed in USD per million tokens unless otherwise stated. Prices are subject to change at the provider's discretion. We may charge a platform fee on transactions processed through the Platform, which will be clearly disclosed before you complete any purchase. All payments are processed through our third-party payment processors. You agree to pay all fees and charges incurred in connection with your use of the Platform. Refund policies are determined by individual model providers unless otherwise required by applicable law.",
+    "s7Title": "7. Intellectual Property",
+    "s7Content": "The Platform and its original content, features, and functionality are owned by Model Exchange, Inc. and are protected by international copyright, trademark, and other intellectual property laws. Model providers retain all rights to their models and related intellectual property. Consumers retain rights to the outputs they generate using the models, subject to the respective provider's licensing terms. You may not copy, modify, distribute, or create derivative works of the Platform without our express written permission.",
+    "s8Title": "8. Limitation of Liability",
+    "s8Content": "To the maximum extent permitted by applicable law, Model Exchange, Inc. shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from: (a) your use or inability to use the Platform; (b) any conduct or content of any third party, including model providers; (c) unauthorized access, use, or alteration of your transmissions or content; (d) the quality, accuracy, or reliability of any model listed on the Platform. Our total liability shall not exceed the amount you paid us in the twelve months preceding the claim.",
+    "s9Title": "9. Modifications to Terms",
+    "s9Content": "We reserve the right to modify these Terms at any time. We will notify users of material changes by posting the updated Terms on the Platform and updating the \"Last updated\" date. Your continued use of the Platform after such changes constitutes your acceptance of the new Terms. If you do not agree to the modified Terms, you should discontinue use of the Platform. We encourage you to review these Terms periodically to stay informed of updates.",
+    "s10Title": "10. Contact Information",
+    "s10Content": "If you have any questions about these Terms of Service, please contact us at legal@modelexchange.ai. For general support inquiries, reach us at support@modelexchange.ai. Our mailing address is Model Exchange, Inc., 548 Market Street, Suite 35000, San Francisco, CA 94104, United States."
+  },
+  "privacy": {
+    "metaTitle": "Privacy Policy - Model Exchange",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 20, 2026",
+    "s1Title": "1. Introduction",
+    "s1Content": "Model Exchange, Inc. (\"we\", \"us\", or \"our\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the Model Exchange platform (\"Platform\"). By using the Platform, you consent to the data practices described in this policy. We encourage you to read this Privacy Policy carefully and contact us if you have any questions.",
+    "s2Title": "2. Information We Collect",
+    "s2Content": "We collect information you provide directly, including: account registration data (name, email address, organization name), payment information (processed securely by our third-party payment providers — we do not store full credit card numbers), model listing information submitted by providers, and communications you send to us. We also automatically collect: device and browser information, IP address and approximate location, usage data such as pages visited, models viewed, and search queries, cookies and similar tracking technologies, and API usage logs including request timestamps and token counts.",
+    "s3Title": "3. How We Use Your Information",
+    "s3Content": "We use the information we collect to: operate, maintain, and improve the Platform; process transactions and send related information including confirmations and invoices; create and manage your account; facilitate communication between model providers and consumers; send you technical notices, updates, security alerts, and support messages; monitor and analyze trends, usage, and activities on the Platform; detect, investigate, and prevent fraudulent transactions, abuse, and other illegal activities; personalize your experience and provide model recommendations based on your usage patterns; and comply with legal obligations.",
+    "s4Title": "4. Information Sharing and Disclosure",
+    "s4Content": "We may share your information in the following circumstances: with model providers when you initiate a transaction or request access to their models (limited to information necessary to fulfill the service); with service providers who perform services on our behalf, such as payment processing, data analytics, email delivery, hosting, and customer service; in response to a legal request if we believe disclosure is required by applicable law, regulation, or legal process; to protect the rights, property, and safety of Model Exchange, our users, or the public; in connection with a merger, acquisition, or sale of all or a portion of our assets; and with your consent or at your direction. We do not sell your personal information to third parties.",
+    "s5Title": "5. Data Security",
+    "s5Content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include encryption of data in transit and at rest, regular security assessments and penetration testing, access controls and authentication mechanisms, employee training on data protection, and incident response procedures. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.",
+    "s6Title": "6. Data Retention",
+    "s6Content": "We retain your personal information for as long as your account is active or as needed to provide you services. We will also retain and use your information as necessary to comply with legal obligations, resolve disputes, and enforce our agreements. API usage logs are retained for 90 days for operational purposes and then aggregated into anonymized analytics data. If you request account deletion, we will delete or anonymize your personal information within 30 days, except where retention is required by law or for legitimate business purposes such as fraud prevention.",
+    "s7Title": "7. Your Rights and Choices",
+    "s7Content": "Depending on your location, you may have the following rights regarding your personal information: the right to access and receive a copy of your personal data; the right to rectify inaccurate or incomplete data; the right to erasure (\"right to be forgotten\"); the right to restrict or object to processing; the right to data portability; and the right to withdraw consent at any time. You can exercise these rights by contacting us at privacy@modelexchange.ai. We will respond to your request within 30 days. You may also opt out of marketing communications by clicking the unsubscribe link in any marketing email or by updating your account notification preferences.",
+    "s8Title": "8. International Data Transfers",
+    "s8Content": "Your information may be transferred to and maintained on servers located outside of your country of residence. If you are located in the European Economic Area (EEA), United Kingdom, or other regions with data protection laws, we ensure that transfers of personal data are protected by appropriate safeguards, such as Standard Contractual Clauses approved by the European Commission or other legally recognized transfer mechanisms. By using the Platform, you consent to the transfer of your information to the United States and other jurisdictions where we operate.",
+    "s9Title": "9. Contact Us",
+    "s9Content": "If you have questions or concerns about this Privacy Policy or our data practices, please contact our Data Protection Officer at privacy@modelexchange.ai. You may also reach us by mail at Model Exchange, Inc., 548 Market Street, Suite 35000, San Francisco, CA 94104, United States. If you are located in the EEA, you also have the right to lodge a complaint with your local data protection authority."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "title": "Model Exchange - AI 模型市场",
+    "description": "发现并集成前沿 AI 模型。一个供 LLM 提供商上架、定价和分发模型的市场。"
+  },
+  "nav": {
+    "brand": "Model Exchange",
+    "models": "模型",
+    "pricing": "定价",
+    "docs": "文档",
+    "listModel": "上架模型"
+  },
+  "hero": {
+    "badge": "AI 模型市场",
+    "title": "发现、对比与集成",
+    "titleHighlight": "AI 模型",
+    "subtitle": "领先的 AI 模型市场，模型提供商可以透明定价上架 LLM。为您的场景找到最合适的模型。",
+    "browseModels": "浏览模型",
+    "listYourModel": "上架您的模型"
+  },
+  "models": {
+    "sectionTitle": "精选模型",
+    "sectionSubtitle": "探索来自顶级提供商的大语言模型",
+    "perMillionTokens": "每百万 tokens",
+    "input": "输入",
+    "output": "输出",
+    "context": "上下文",
+    "tokens": "tokens",
+    "viewDetails": "查看详情",
+    "contactProvider": "联系提供商"
+  },
+  "comingSoon": {
+    "title": "媒体模型",
+    "badge": "即将推出",
+    "subtitle": "我们正在拓展 LLM 以外的领域。图像生成、视频合成、音频处理和多模态模型即将上线。",
+    "imageGen": "图像生成",
+    "imageGenDesc": "前沿的文生图和图生图模型",
+    "videoSynth": "视频合成",
+    "videoSynthDesc": "AI 驱动的视频生成与编辑模型",
+    "audioProc": "音频处理",
+    "audioProcDesc": "语音转文字、文字转语音及音频生成",
+    "notify": "获取通知",
+    "emailPlaceholder": "输入您的邮箱"
+  },
+  "footer": {
+    "tagline": "AI 模型提供商和消费者的市场。",
+    "product": "产品",
+    "company": "公司",
+    "legal": "法律",
+    "allRightsReserved": "保留所有权利。"
+  },
+  "language": {
+    "en": "English",
+    "zh": "中文"
+  }
+}
