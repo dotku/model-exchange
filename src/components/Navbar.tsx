@@ -36,17 +36,17 @@ export default function Navbar({ user }: NavbarProps = {}) {
             {t("models")}
           </Link>
           <Link
-            href={`/${locale}#pricing`}
+            href={`/${locale}/pricing`}
             className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             {t("pricing")}
           </Link>
-          <a
-            href="#"
+          <Link
+            href={`/${locale}/leaderboard`}
             className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
-            {t("docs")}
-          </a>
+            {t("leaderboard")}
+          </Link>
         </div>
 
         {/* Right side */}
@@ -59,6 +59,18 @@ export default function Navbar({ user }: NavbarProps = {}) {
                 className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
               >
                 {t("dashboard")}
+              </Link>
+              <Link
+                href={`/${locale}/dashboard/keys`}
+                className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+              >
+                {t("apiKeys")}
+              </Link>
+              <Link
+                href={`/${locale}/dashboard/usage`}
+                className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+              >
+                {t("usage")}
               </Link>
               <div className="flex items-center gap-2">
                 {user.picture ? (
@@ -142,17 +154,17 @@ export default function Navbar({ user }: NavbarProps = {}) {
             {t("models")}
           </Link>
           <Link
-            href={`/${locale}#pricing`}
+            href={`/${locale}/pricing`}
             className="block text-sm text-zinc-600 dark:text-zinc-400"
           >
             {t("pricing")}
           </Link>
-          <a
-            href="#"
+          <Link
+            href={`/${locale}/leaderboard`}
             className="block text-sm text-zinc-600 dark:text-zinc-400"
           >
-            {t("docs")}
-          </a>
+            {t("leaderboard")}
+          </Link>
           <div className="flex flex-col gap-3 pt-2 border-t border-zinc-200 dark:border-zinc-800">
             <LanguageSwitcher />
             {user ? (
@@ -162,6 +174,18 @@ export default function Navbar({ user }: NavbarProps = {}) {
                   className="text-sm text-zinc-600 dark:text-zinc-400"
                 >
                   {t("dashboard")}
+                </Link>
+                <Link
+                  href={`/${locale}/dashboard/keys`}
+                  className="text-sm text-zinc-600 dark:text-zinc-400"
+                >
+                  {t("apiKeys")}
+                </Link>
+                <Link
+                  href={`/${locale}/dashboard/usage`}
+                  className="text-sm text-zinc-600 dark:text-zinc-400"
+                >
+                  {t("usage")}
                 </Link>
                 <div className="flex items-center gap-2">
                   {user.picture ? (

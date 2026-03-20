@@ -4,6 +4,8 @@ export interface ProviderOffering {
   outputPrice: number;
   speed: "fast" | "standard" | "economy";
   freeTokens?: number | null;
+  apiDocsUrl?: string;
+  billingType?: "platform" | "external";
   note?: string;
 }
 
@@ -17,10 +19,31 @@ export interface Model {
   outputPrice: number;
   tags: string[];
   freeTokens?: number | null;
+  billingType?: "platform" | "external";
+  isPartner?: boolean;
+  maintainedBy?: string;
   offerings?: ProviderOffering[];
 }
 
 export const models: Model[] = [
+  {
+    id: "sienovo-smollm",
+    name: "sienovo/smollm",
+    provider: "Sienovo",
+    description:
+      "A compact yet capable language model optimized for edge deployment and resource-constrained environments. Delivers strong performance on reasoning and instruction-following tasks at a fraction of the cost of larger models. Free to use — provided by Sienovo for the community.",
+    contextWindow: "8K",
+    inputPrice: 0,
+    outputPrice: 0,
+    tags: ["Compact", "Edge", "Free", "Instruction"],
+    freeTokens: null,
+    billingType: "external",
+    isPartner: true,
+    maintainedBy: "JY Tech Cloud",
+    offerings: [
+      { providerName: "JY Tech Cloud", inputPrice: 0, outputPrice: 0, speed: "fast", apiDocsUrl: "https://jytech.us", note: "Free — official hosting" },
+    ],
+  },
   {
     id: "claude-opus-4",
     name: "Claude Opus 4",
@@ -33,9 +56,9 @@ export const models: Model[] = [
     tags: ["Reasoning", "Analysis", "Code"],
     freeTokens: null,
     offerings: [
-      { providerName: "Anthropic", inputPrice: 15, outputPrice: 75, speed: "standard" },
-      { providerName: "AWS Bedrock", inputPrice: 15, outputPrice: 75, speed: "standard", note: "Cross-region inference" },
-      { providerName: "Google Vertex AI", inputPrice: 15, outputPrice: 75, speed: "standard" },
+      { providerName: "Anthropic", inputPrice: 15, outputPrice: 75, speed: "standard", apiDocsUrl: "https://docs.anthropic.com/en/api" },
+      { providerName: "AWS Bedrock", inputPrice: 15, outputPrice: 75, speed: "standard", apiDocsUrl: "https://docs.aws.amazon.com/bedrock/", note: "Cross-region inference" },
+      { providerName: "Google Vertex AI", inputPrice: 15, outputPrice: 75, speed: "standard", apiDocsUrl: "https://cloud.google.com/vertex-ai/docs" },
     ],
   },
   {
@@ -50,9 +73,9 @@ export const models: Model[] = [
     tags: ["Multimodal", "General", "Vision"],
     freeTokens: 1_000_000,
     offerings: [
-      { providerName: "OpenAI", inputPrice: 2.5, outputPrice: 10, speed: "fast", freeTokens: 1_000_000 },
-      { providerName: "Azure OpenAI", inputPrice: 2.5, outputPrice: 10, speed: "standard", note: "Enterprise SLA" },
-      { providerName: "OpenRouter", inputPrice: 3.0, outputPrice: 12, speed: "fast", freeTokens: 500_000 },
+      { providerName: "OpenAI", inputPrice: 2.5, outputPrice: 10, speed: "fast", freeTokens: 1_000_000, apiDocsUrl: "https://platform.openai.com/docs" },
+      { providerName: "Azure OpenAI", inputPrice: 2.5, outputPrice: 10, speed: "standard", apiDocsUrl: "https://learn.microsoft.com/en-us/azure/ai-services/openai/", note: "Enterprise SLA" },
+      { providerName: "OpenRouter", inputPrice: 3.0, outputPrice: 12, speed: "fast", freeTokens: 500_000, apiDocsUrl: "https://openrouter.ai/docs" },
     ],
   },
   {
@@ -67,9 +90,9 @@ export const models: Model[] = [
     tags: ["Long Context", "Code", "Multimodal"],
     freeTokens: 5_000_000,
     offerings: [
-      { providerName: "Google AI Studio", inputPrice: 1.25, outputPrice: 10, speed: "standard", freeTokens: 5_000_000 },
-      { providerName: "Google Vertex AI", inputPrice: 1.25, outputPrice: 10, speed: "standard", note: "Enterprise" },
-      { providerName: "OpenRouter", inputPrice: 1.5, outputPrice: 12, speed: "fast" },
+      { providerName: "Google AI Studio", inputPrice: 1.25, outputPrice: 10, speed: "standard", freeTokens: 5_000_000, apiDocsUrl: "https://ai.google.dev/docs" },
+      { providerName: "Google Vertex AI", inputPrice: 1.25, outputPrice: 10, speed: "standard", apiDocsUrl: "https://cloud.google.com/vertex-ai/docs", note: "Enterprise" },
+      { providerName: "OpenRouter", inputPrice: 1.5, outputPrice: 12, speed: "fast", apiDocsUrl: "https://openrouter.ai/docs" },
     ],
   },
   {
@@ -84,10 +107,10 @@ export const models: Model[] = [
     tags: ["Open Weight", "Enterprise", "Efficient"],
     freeTokens: 10_000_000,
     offerings: [
-      { providerName: "Together AI", inputPrice: 0.2, outputPrice: 0.6, speed: "fast", freeTokens: 10_000_000 },
-      { providerName: "Fireworks AI", inputPrice: 0.22, outputPrice: 0.88, speed: "fast" },
-      { providerName: "AWS Bedrock", inputPrice: 0.32, outputPrice: 0.97, speed: "standard", note: "Managed deployment" },
-      { providerName: "Groq", inputPrice: 0.18, outputPrice: 0.5, speed: "fast", note: "LPU inference" },
+      { providerName: "Together AI", inputPrice: 0.2, outputPrice: 0.6, speed: "fast", freeTokens: 10_000_000, apiDocsUrl: "https://docs.together.ai" },
+      { providerName: "Fireworks AI", inputPrice: 0.22, outputPrice: 0.88, speed: "fast", apiDocsUrl: "https://docs.fireworks.ai" },
+      { providerName: "AWS Bedrock", inputPrice: 0.32, outputPrice: 0.97, speed: "standard", apiDocsUrl: "https://docs.aws.amazon.com/bedrock/", note: "Managed deployment" },
+      { providerName: "Groq", inputPrice: 0.18, outputPrice: 0.5, speed: "fast", apiDocsUrl: "https://console.groq.com/docs", note: "LPU inference" },
     ],
   },
   {
@@ -102,10 +125,10 @@ export const models: Model[] = [
     tags: ["Balanced", "Code", "Reasoning"],
     freeTokens: 1_000_000,
     offerings: [
-      { providerName: "Anthropic", inputPrice: 3, outputPrice: 15, speed: "standard", freeTokens: 1_000_000 },
-      { providerName: "AWS Bedrock", inputPrice: 3, outputPrice: 15, speed: "standard" },
-      { providerName: "Google Vertex AI", inputPrice: 3, outputPrice: 15, speed: "standard" },
-      { providerName: "OpenRouter", inputPrice: 3, outputPrice: 15, speed: "fast" },
+      { providerName: "Anthropic", inputPrice: 3, outputPrice: 15, speed: "standard", freeTokens: 1_000_000, apiDocsUrl: "https://docs.anthropic.com/en/api" },
+      { providerName: "AWS Bedrock", inputPrice: 3, outputPrice: 15, speed: "standard", apiDocsUrl: "https://docs.aws.amazon.com/bedrock/" },
+      { providerName: "Google Vertex AI", inputPrice: 3, outputPrice: 15, speed: "standard", apiDocsUrl: "https://cloud.google.com/vertex-ai/docs" },
+      { providerName: "OpenRouter", inputPrice: 3, outputPrice: 15, speed: "fast", apiDocsUrl: "https://openrouter.ai/docs" },
     ],
   },
   {
@@ -120,9 +143,9 @@ export const models: Model[] = [
     tags: ["Reasoning", "Cost-Effective", "Open Weight"],
     freeTokens: 5_000_000,
     offerings: [
-      { providerName: "DeepSeek", inputPrice: 0.55, outputPrice: 2.19, speed: "standard", freeTokens: 5_000_000 },
-      { providerName: "Together AI", inputPrice: 3, outputPrice: 7, speed: "fast" },
-      { providerName: "Fireworks AI", inputPrice: 2.4, outputPrice: 8, speed: "fast", note: "FP8 quantized" },
+      { providerName: "DeepSeek", inputPrice: 0.55, outputPrice: 2.19, speed: "standard", freeTokens: 5_000_000, apiDocsUrl: "https://api-docs.deepseek.com" },
+      { providerName: "Together AI", inputPrice: 3, outputPrice: 7, speed: "fast", apiDocsUrl: "https://docs.together.ai" },
+      { providerName: "Fireworks AI", inputPrice: 2.4, outputPrice: 8, speed: "fast", apiDocsUrl: "https://docs.fireworks.ai", note: "FP8 quantized" },
     ],
   },
 ];

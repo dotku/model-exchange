@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/scrape-leaderboard",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/benchmark-speed",
+      "schedule": "0 7 * * *"
+    }
+  ]
+}

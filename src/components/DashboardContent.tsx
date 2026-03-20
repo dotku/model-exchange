@@ -16,6 +16,9 @@ interface ModelData {
   outputPrice: number;
   tags: string[];
   freeTokens: number | null;
+  speed: string;
+  apiDocsUrl: string | null;
+  billingType: string;
   isPublished: boolean;
   createdAt: string;
   updatedAt: string;
@@ -134,6 +137,15 @@ export default function DashboardContent({ models }: { models: ModelData[] }) {
                     >
                       {model.isPublished ? t("published") : t("draft")}
                     </span>
+                    <span
+                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        model.billingType === "platform"
+                          ? "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300"
+                          : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
+                      }`}
+                    >
+                      {model.billingType === "platform" ? t("billingPlatformBadge") : t("billingExternalBadge")}
+                    </span>
                   </div>
                   <p className="text-sm text-zinc-500 dark:text-zinc-400">
                     {model.provider}
@@ -151,6 +163,19 @@ export default function DashboardContent({ models }: { models: ModelData[] }) {
                     <span>
                       {t("context")}: {model.contextWindow}
                     </span>
+                    {model.apiDocsUrl && (
+                      <a
+                        href={model.apiDocsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline"
+                      >
+                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                        API Docs
+                      </a>
+                    )}
                     {model.freeTokens != null && model.freeTokens > 0 && (
                       <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
                         <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -337,6 +362,76 @@ function ModelForm({
             <p className="mt-1 text-xs text-zinc-400 dark:text-zinc-500">
               {t("freeTokensHint")}
             </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                {t("speedLabel")}
+              </label>
+              <select
+                name="speed"
+                defaultValue={model?.speed ?? "standard"}
+                className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              >
+                <option value="fast">{t("speedFast")}</option>
+                <option value="standard">{t("speedStandard")}</option>
+                <option value="economy">{t("speedEconomy")}</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                {t("apiDocsUrlLabel")}
+              </label>
+              <input
+                name="apiDocsUrl"
+                type="url"
+                defaultValue={model?.apiDocsUrl ?? ""}
+                className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                placeholder="https://docs.example.com/api"
+              />
+            </div>
+          </div>
+
+          {/* Billing Type */}
+          <div className="rounded-lg border border-zinc-200 dark:border-zinc-700 p-4 space-y-3">
+            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+              {t("billingTypeLabel")}
+            </p>
+            <label className="flex items-start gap-3 cursor-pointer">
+              <input
+                type="radio"
+                name="billingType"
+                value="platform"
+                defaultChecked={model?.billingType === "platform"}
+                className="mt-0.5 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
+              />
+              <div>
+                <p className="text-sm font-medium text-zinc-900 dark:text-white">
+                  {t("billingPlatform")}
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  {t("billingPlatformDesc")}
+                </p>
+              </div>
+            </label>
+            <label className="flex items-start gap-3 cursor-pointer">
+              <input
+                type="radio"
+                name="billingType"
+                value="external"
+                defaultChecked={!model || model.billingType !== "platform"}
+                className="mt-0.5 h-4 w-4 text-indigo-600 focus:ring-indigo-500"
+              />
+              <div>
+                <p className="text-sm font-medium text-zinc-900 dark:text-white">
+                  {t("billingExternal")}
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  {t("billingExternalDesc")}
+                </p>
+              </div>
+            </label>
           </div>
 
           <div className="flex items-center gap-2">

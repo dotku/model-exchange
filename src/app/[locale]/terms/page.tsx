@@ -115,6 +115,15 @@ export default function TermsPage() {
             {t("s10Content")}
           </p>
         </section>
+
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold text-zinc-900 dark:text-white mb-3">
+            {t("s11Title")}
+          </h2>
+          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            {t("s11Content")}
+          </p>
+        </section>
       </article>
     </LegalPageLayout>
   );

@@ -8,18 +8,23 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  auth0Id   String   @unique @map("auth0_id")
-  email     String   @unique
-  name      String?
-  picture   String?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  models    AIModel[]
+  id           String        @id @default(cuid())
+  auth0Id      String        @unique @map("auth0_id")
+  email        String        @unique
+  name         String?
+  picture      String?
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  models       AIModel[]
+  apiKeys      ApiKey[]
+  providerKeys ProviderKey[]
 
   @@map("users")
 }
 
+// billingType:
+//   "platform"  — users pay via Model Exchange, platform takes fee, provider gets remainder
+//   "external"  — provider handles billing externally, model listing is free
 model AIModel {
   id            String   @id @default(cuid())
   name          String
@@ -30,6 +35,9 @@ model AIModel {
   outputPrice   Float    @map("output_price")
   tags          String[] @default([])
   freeTokens    Int?     @map("free_tokens")
+  speed         String   @default("standard")
+  apiDocsUrl    String?  @map("api_docs_url")
+  billingType   String   @default("external") @map("billing_type")
   isPublished   Boolean  @default(false) @map("is_published")
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
@@ -37,4 +45,100 @@ model AIModel {
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("ai_models")
+}
+
+// User's Model Exchange API key — used to authenticate with the MX gateway
+model ApiKey {
+  id        String   @id @default(cuid())
+  name      String
+  keyHash   String   @map("key_hash")
+  keyPrefix String   @map("key_prefix")
+  isActive  Boolean  @default(true) @map("is_active")
+  lastUsed  DateTime? @map("last_used")
+  createdAt DateTime @default(now()) @map("created_at")
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("api_keys")
+}
+
+// BYOK — user's own provider API keys, routed through MX gateway
+model ProviderKey {
+  id           String   @id @default(cuid())
+  providerName String   @map("provider_name")
+  label        String
+  encryptedKey String   @map("encrypted_key")
+  endpointUrl  String?  @map("endpoint_url")
+  isActive     Boolean  @default(true) @map("is_active")
+  lastUsed     DateTime? @map("last_used")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  userId       String   @map("user_id")
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("provider_keys")
+}
+
+// Scraped from external leaderboards (e.g. Scale AI SEAL, Chatbot Arena)
+model LeaderboardEntry {
+  id           String   @id @default(cuid())
+  modelName    String   @map("model_name")
+  provider     String
+  source       String   // "scale_seal" | "chatbot_arena" | "open_llm"
+  category     String   // "overall" | "coding" | "math" | "reasoning" | "instruction"
+  rank         Int
+  score        Float
+  eloRating    Int?     @map("elo_rating")
+  scrapedAt    DateTime @map("scraped_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@unique([modelName, source, category, scrapedAt])
+  @@index([source, category, scrapedAt])
+  @@map("leaderboard_entries")
+}
+
+// Speed benchmarks — from cron (system) or user-triggered (community)
+model SpeedBenchmark {
+  id               String   @id @default(cuid())
+  modelName        String   @map("model_name")
+  providerName     String   @map("provider_name")
+  latencyMs        Int      @map("latency_ms")
+  tokensPerSecond  Float    @map("tokens_per_second")
+  ttftMs           Int      @map("ttft_ms")
+  testDate         DateTime @map("test_date")
+  testedBy         String?  @map("tested_by")
+  testedByName     String?  @map("tested_by_name")
+  isPublished      Boolean  @default(false) @map("is_published")
+  source           String   @default("system") // "system" | "community"
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@unique([modelName, providerName, testDate, testedBy])
+  @@index([testDate])
+  @@index([isPublished, testDate])
+  @@map("speed_benchmarks")
+}
+
+// Gateway usage log — tracks every API call for analytics
+model UsageLog {
+  id              String   @id @default(cuid())
+  userId          String?  @map("user_id")
+  apiKeyId        String?  @map("api_key_id")
+  modelName       String   @map("model_name")
+  providerName    String   @map("provider_name")
+  inputTokens     Int      @map("input_tokens")
+  outputTokens    Int      @map("output_tokens")
+  totalTokens     Int      @map("total_tokens")
+  latencyMs       Int      @map("latency_ms")
+  ttftMs          Int?     @map("ttft_ms")
+  statusCode      Int      @map("status_code")
+  isSuccess       Boolean  @map("is_success")
+  errorMessage    String?  @map("error_message")
+  source          String   @default("gateway") // "gateway" | "benchmark"
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@index([userId, createdAt])
+  @@index([modelName, createdAt])
+  @@index([providerName, createdAt])
+  @@index([createdAt])
+  @@map("usage_logs")
 }

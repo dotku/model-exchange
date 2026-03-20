@@ -6,9 +6,12 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function createPrismaClient() {
-  const adapter = new PrismaPg({
-    connectionString: process.env.DATABASE_URL!,
-  });
+  // Upgrade sslmode=require to verify-full to silence pg driver warning
+  const url = (process.env.DATABASE_URL ?? "").replace(
+    "sslmode=require",
+    "sslmode=verify-full"
+  );
+  const adapter = new PrismaPg({ connectionString: url });
   return new PrismaClient({ adapter });
 }
 
