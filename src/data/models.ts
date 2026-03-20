@@ -1,3 +1,12 @@
+export interface ProviderOffering {
+  providerName: string;
+  inputPrice: number;
+  outputPrice: number;
+  speed: "fast" | "standard" | "economy";
+  freeTokens?: number | null;
+  note?: string;
+}
+
 export interface Model {
   id: string;
   name: string;
@@ -7,6 +16,8 @@ export interface Model {
   inputPrice: number;
   outputPrice: number;
   tags: string[];
+  freeTokens?: number | null;
+  offerings?: ProviderOffering[];
 }
 
 export const models: Model[] = [
@@ -20,6 +31,12 @@ export const models: Model[] = [
     inputPrice: 15,
     outputPrice: 75,
     tags: ["Reasoning", "Analysis", "Code"],
+    freeTokens: null,
+    offerings: [
+      { providerName: "Anthropic", inputPrice: 15, outputPrice: 75, speed: "standard" },
+      { providerName: "AWS Bedrock", inputPrice: 15, outputPrice: 75, speed: "standard", note: "Cross-region inference" },
+      { providerName: "Google Vertex AI", inputPrice: 15, outputPrice: 75, speed: "standard" },
+    ],
   },
   {
     id: "gpt-4o",
@@ -31,6 +48,12 @@ export const models: Model[] = [
     inputPrice: 2.5,
     outputPrice: 10,
     tags: ["Multimodal", "General", "Vision"],
+    freeTokens: 1_000_000,
+    offerings: [
+      { providerName: "OpenAI", inputPrice: 2.5, outputPrice: 10, speed: "fast", freeTokens: 1_000_000 },
+      { providerName: "Azure OpenAI", inputPrice: 2.5, outputPrice: 10, speed: "standard", note: "Enterprise SLA" },
+      { providerName: "OpenRouter", inputPrice: 3.0, outputPrice: 12, speed: "fast", freeTokens: 500_000 },
+    ],
   },
   {
     id: "gemini-2.5-pro",
@@ -42,6 +65,12 @@ export const models: Model[] = [
     inputPrice: 1.25,
     outputPrice: 10,
     tags: ["Long Context", "Code", "Multimodal"],
+    freeTokens: 5_000_000,
+    offerings: [
+      { providerName: "Google AI Studio", inputPrice: 1.25, outputPrice: 10, speed: "standard", freeTokens: 5_000_000 },
+      { providerName: "Google Vertex AI", inputPrice: 1.25, outputPrice: 10, speed: "standard", note: "Enterprise" },
+      { providerName: "OpenRouter", inputPrice: 1.5, outputPrice: 12, speed: "fast" },
+    ],
   },
   {
     id: "llama-4-maverick",
@@ -53,6 +82,13 @@ export const models: Model[] = [
     inputPrice: 0.2,
     outputPrice: 0.6,
     tags: ["Open Weight", "Enterprise", "Efficient"],
+    freeTokens: 10_000_000,
+    offerings: [
+      { providerName: "Together AI", inputPrice: 0.2, outputPrice: 0.6, speed: "fast", freeTokens: 10_000_000 },
+      { providerName: "Fireworks AI", inputPrice: 0.22, outputPrice: 0.88, speed: "fast" },
+      { providerName: "AWS Bedrock", inputPrice: 0.32, outputPrice: 0.97, speed: "standard", note: "Managed deployment" },
+      { providerName: "Groq", inputPrice: 0.18, outputPrice: 0.5, speed: "fast", note: "LPU inference" },
+    ],
   },
   {
     id: "claude-sonnet-4",
@@ -64,6 +100,13 @@ export const models: Model[] = [
     inputPrice: 3,
     outputPrice: 15,
     tags: ["Balanced", "Code", "Reasoning"],
+    freeTokens: 1_000_000,
+    offerings: [
+      { providerName: "Anthropic", inputPrice: 3, outputPrice: 15, speed: "standard", freeTokens: 1_000_000 },
+      { providerName: "AWS Bedrock", inputPrice: 3, outputPrice: 15, speed: "standard" },
+      { providerName: "Google Vertex AI", inputPrice: 3, outputPrice: 15, speed: "standard" },
+      { providerName: "OpenRouter", inputPrice: 3, outputPrice: 15, speed: "fast" },
+    ],
   },
   {
     id: "deepseek-r1",
@@ -75,5 +118,11 @@ export const models: Model[] = [
     inputPrice: 0.55,
     outputPrice: 2.19,
     tags: ["Reasoning", "Cost-Effective", "Open Weight"],
+    freeTokens: 5_000_000,
+    offerings: [
+      { providerName: "DeepSeek", inputPrice: 0.55, outputPrice: 2.19, speed: "standard", freeTokens: 5_000_000 },
+      { providerName: "Together AI", inputPrice: 3, outputPrice: 7, speed: "fast" },
+      { providerName: "Fireworks AI", inputPrice: 2.4, outputPrice: 8, speed: "fast", note: "FP8 quantized" },
+    ],
   },
 ];

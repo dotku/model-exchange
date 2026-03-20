@@ -1,8 +1,12 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 import type { Model } from "@/data/models";
+import { formatTokenCount } from "@/lib/format";
 
 export default function ModelCard({ model }: { model: Model }) {
   const t = useTranslations("models");
+  const locale = useLocale();
+  const detailHref = `/${locale}/models/${model.id}`;
 
   return (
     <div className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-lg hover:shadow-indigo-500/5 transition-all duration-200">
@@ -50,6 +54,18 @@ export default function ModelCard({ model }: { model: Model }) {
         ))}
       </div>
 
+      {/* Free Tier */}
+      {model.freeTokens != null && model.freeTokens > 0 && (
+        <div className="flex items-center gap-1.5 mb-4 px-2.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50">
+          <svg className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+          </svg>
+          <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300">
+            {t("freeTokens", { count: formatTokenCount(model.freeTokens) })}
+          </span>
+        </div>
+      )}
+
       {/* Pricing */}
       <div className="rounded-lg bg-zinc-50 dark:bg-zinc-800/50 p-3 mb-4">
         <div className="grid grid-cols-3 gap-2 text-center">
@@ -85,12 +101,18 @@ export default function ModelCard({ model }: { model: Model }) {
 
       {/* Actions */}
       <div className="flex gap-2">
-        <button className="flex-1 rounded-lg border border-zinc-200 dark:border-zinc-700 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
+        <Link
+          href={detailHref}
+          className="flex-1 text-center rounded-lg border border-zinc-200 dark:border-zinc-700 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+        >
           {t("viewDetails")}
-        </button>
-        <button className="flex-1 rounded-lg bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors">
+        </Link>
+        <Link
+          href={detailHref}
+          className="flex-1 text-center rounded-lg bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors"
+        >
           {t("contactProvider")}
-        </button>
+        </Link>
       </div>
     </div>
   );

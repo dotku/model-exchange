@@ -1,8 +1,10 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 
 export default function Footer() {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
+  const locale = useLocale();
 
   return (
     <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
@@ -78,14 +80,14 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-zinc-500 dark:text-zinc-400">
               <li>
-                <a href="#" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
+                <Link href={`/${locale}/privacy`} className="hover:text-zinc-900 dark:hover:text-white transition-colors">
                   Privacy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
+                <Link href={`/${locale}/terms`} className="hover:text-zinc-900 dark:hover:text-white transition-colors">
                   Terms
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

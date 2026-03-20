@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  auth0Id   String   @unique @map("auth0_id")
+  email     String   @unique
+  name      String?
+  picture   String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  models    AIModel[]
+
+  @@map("users")
+}
+
+model AIModel {
+  id            String   @id @default(cuid())
+  name          String
+  provider      String
+  description   String
+  contextWindow String   @map("context_window")
+  inputPrice    Float    @map("input_price")
+  outputPrice   Float    @map("output_price")
+  tags          String[] @default([])
+  freeTokens    Int?     @map("free_tokens")
+  isPublished   Boolean  @default(false) @map("is_published")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  userId        String   @map("user_id")
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("ai_models")
+}

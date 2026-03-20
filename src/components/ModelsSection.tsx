@@ -1,9 +1,14 @@
 import { useTranslations } from "next-intl";
-import { models } from "@/data/models";
+import { models as sampleModels, type Model } from "@/data/models";
 import ModelCard from "./ModelCard";
 
-export default function ModelsSection() {
+interface ModelsSectionProps {
+  additionalModels?: Model[];
+}
+
+export default function ModelsSection({ additionalModels = [] }: ModelsSectionProps) {
   const t = useTranslations("models");
+  const allModels = [...additionalModels, ...sampleModels];
 
   return (
     <section id="models" className="py-20 sm:py-28 bg-white dark:bg-zinc-950">
@@ -17,7 +22,7 @@ export default function ModelsSection() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {models.map((model) => (
+          {allModels.map((model) => (
             <ModelCard key={model.id} model={model} />
           ))}
         </div>
